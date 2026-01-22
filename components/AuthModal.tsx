@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { X, Mail, Lock, ArrowRight, Loader2, ArrowLeft, KeyRound, Send } from 'lucide-react';
+// Fixing firebase/auth missing exports by importing directly from @firebase/auth
 import { 
   createUserWithEmailAndPassword, 
   signInWithEmailAndPassword, 
@@ -9,7 +10,7 @@ import {
   signInWithPopup,
   sendEmailVerification,
   signOut
-} from 'firebase/auth';
+} from '@firebase/auth';
 import { auth } from '../lib/firebase';
 import { getFirebaseErrorMessage } from '../lib/firebaseUtils';
 
@@ -167,7 +168,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
       />
 
       {/* Modal Card */}
-      <div className="relative w-full max-w-md bg-white rounded-2xl shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+      <div className="relative w-full max-md bg-white rounded-2xl shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200">
         
         {/* Close Button */}
         <button 

@@ -1,7 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { X, User, Trash2, AlertTriangle, Loader2, Save, CheckCircle2, Image } from 'lucide-react';
-import { updateProfile, deleteUser } from 'firebase/auth';
+// Fixing firebase/auth missing updateProfile and deleteUser by importing directly from @firebase/auth
+import { updateProfile, deleteUser } from '@firebase/auth';
 import { useAuth } from '../lib/AuthContext';
 
 interface SettingsModalProps {
@@ -92,7 +93,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose }) => {
       />
 
       {/* Modal Card */}
-      <div className="relative w-full max-w-md bg-white rounded-2xl shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+      <div className="relative w-full max-md bg-white rounded-2xl shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200">
         
         {/* Header */}
         <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">

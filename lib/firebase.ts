@@ -1,6 +1,7 @@
 
 import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
+// Fixing firebase/auth missing getAuth by importing directly from @firebase/auth
+import { getAuth } from '@firebase/auth';
 // Added missing firestore and storage imports
 import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';

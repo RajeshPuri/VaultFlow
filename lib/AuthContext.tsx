@@ -1,6 +1,7 @@
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { User, onAuthStateChanged, signOut as firebaseSignOut } from 'firebase/auth';
+// Fixing firebase/auth missing exports by importing directly from @firebase/auth
+import { User, onAuthStateChanged, signOut as firebaseSignOut } from '@firebase/auth';
 import { auth } from './firebase';
 
 interface AuthContextType {
