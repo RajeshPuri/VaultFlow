@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { X, Mail, Lock, ArrowRight, Loader2, ArrowLeft, KeyRound, Send } from 'lucide-react';
+import { X, Mail, Lock, ArrowRight, Loader2, ArrowLeft, KeyRound, Send, Eye, EyeOff } from 'lucide-react';
 // Fixing firebase/auth missing exports by importing directly from @firebase/auth
 import { 
   createUserWithEmailAndPassword, 
@@ -26,6 +26,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
   // Form State
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   // UI State
   const [isLoading, setIsLoading] = useState(false);
@@ -38,6 +39,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
       setIsLoading(false);
       setEmail('');
       setPassword('');
+      setShowPassword(false);
       setMode('default');
       setActiveTab('signin');
     }
@@ -360,14 +362,22 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                   </div>
                   <div className="relative group">
                     <input 
-                      type="password" 
+                      type={showPassword ? 'text' : 'password'} 
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                      className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 outline-none transition-all pl-10 bg-slate-50 group-hover:bg-white"
+                      className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 outline-none transition-all pl-10 pr-10 bg-slate-50 group-hover:bg-white"
                       placeholder="••••••••"
                       required
                     />
                     <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-emerald-500" />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-slate-400 hover:text-emerald-600 transition-colors"
+                      title={showPassword ? "Hide password" : "Show password"}
+                    >
+                      {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                    </button>
                   </div>
                 </div>
 
